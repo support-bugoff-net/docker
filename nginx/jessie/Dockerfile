@@ -33,13 +33,13 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
             nginx-module-njs \
             gettext-base
 
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
+
 # COPY ./include/iptables.conf /etc/iptables.conf
 # RUN chmod +x /etc/iptables.conf
 
 COPY ./include/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
-    ln -sf /dev/stderr /var/log/nginx/error.log
 
 RUN rm -rf /var/lib/apt/lists/*
 
