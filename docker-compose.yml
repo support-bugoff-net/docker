@@ -37,6 +37,8 @@ services:
     container_name: mariadb.example.org
     domainname: example.org
     hostname: mysql
+    # environment:
+      # - MYSQL_ROOT_PASSWORD=
     restart: on-failure:3
   
   proftpd:
