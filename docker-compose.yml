@@ -1,0 +1,59 @@
+version: '2'
+
+services:
+  nginx:
+    image: bugoff/nginx:stable
+    container_name: nginx.example.org
+    domainname: example.org
+    hostname: nginx
+    ports:
+      - 80:80
+      - 443:443
+    restart: on-failure:3
+
+  apache:
+    image: bugoff/apache2:stable
+    container_name: apache24.example.org
+    domainname: example.org
+    hostname: apache24
+    restart: on-failure:3
+
+  php56:
+    image: bugoff/php-5.6-fpm:test
+    container_name: php56.example.org
+    domainname: example.org
+    hostname: php56
+    restart: on-failure:3
+
+  php52:
+    image: bugoff/php-5.2-fpm:test
+    container_name: php52.example.org
+    domainname: example.org
+    hostname: php52
+    restart: on-failure:3
+
+  mariadb:
+    image: bugoff/mariadb:test
+    container_name: mariadb.example.org
+    domainname: example.org
+    hostname: mysql
+    restart: on-failure:3
+  
+  proftpd:
+    image: bugoff/proftpd:test
+    container_name: proftpd.example.org
+    domainname: example.org
+    hostname: ftp
+    ports:
+      - 2222:2222
+    restart: on-failure:3
+
+  exim4:
+    image: bugoff/exim4:test
+    container_name: exim4.example.org
+    domainname: example.org
+    hostname: smtp
+    environment:
+      - PRIMARY_HOST="example.org"
+      - ALLOWED_HOSTS="*"
+    restart: on-failure:3
