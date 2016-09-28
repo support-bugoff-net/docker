@@ -9,28 +9,28 @@ services:
     ports:
       - 80:80
       - 443:443
-    restart: on-failure:3
+    restart: unless-stopped
 
   apache:
     image: bugoff/apache2:stable
     container_name: apache24.example.org
     domainname: example.org
     hostname: apache24
-    restart: on-failure:3
+    restart: unless-stopped
 
   php56:
     image: bugoff/php-5.6-fpm:test
     container_name: php56.example.org
     domainname: example.org
     hostname: php56
-    restart: on-failure:3
+    restart: unless-stopped
 
   php52:
     image: bugoff/php-5.2-fpm:test
     container_name: php52.example.org
     domainname: example.org
     hostname: php52
-    restart: on-failure:3
+    restart: unless-stopped
 
   mariadb:
     image: bugoff/mariadb:test
@@ -39,7 +39,7 @@ services:
     hostname: mysql
     # environment:
       # - MYSQL_ROOT_PASSWORD=
-    restart: on-failure:3
+    restart: unless-stopped
   
   proftpd:
     image: bugoff/proftpd:test
@@ -48,7 +48,7 @@ services:
     hostname: ftp
     ports:
       - 2222:2222
-    restart: on-failure:3
+    restart: unless-stopped
 
   exim4:
     image: bugoff/exim4:test
@@ -58,4 +58,4 @@ services:
     environment:
       - PRIMARY_HOST="example.org"
       - ALLOWED_HOSTS="*"
-    restart: on-failure:3
+    restart: unless-stopped
